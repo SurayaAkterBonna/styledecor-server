@@ -7,16 +7,24 @@ import serverless from "serverless-http";
 
 const app = express();
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:5174",
-      "https://styledecor123.netlify.app"
-    ],
-    credentials: true
-  })
-);
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://styledecor123.netlify.app"
+  ],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  credentials: true
+}));
+
+app.options("*", cors({
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://styledecor123.netlify.app"
+  ],
+  credentials: true
+}));
 
 app.use(express.json());
 
